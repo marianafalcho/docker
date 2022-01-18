@@ -15,3 +15,8 @@ phases:
     commands:
       - echo pushing image to ecr    
       - docker push 324320755747.dkr.ecr.us-east-1.amazonaws.com/mafal_repo:latest
+      - printf'[{"name":"node-api","imageUri":"324320755747.dkr.ecr.us-east-1.amazonaws.com/mafal_repo:latest"}]> imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
