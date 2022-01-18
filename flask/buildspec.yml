@@ -7,3 +7,11 @@ phases:
     commands:
       - pip install -r requirements.txt
       - python app.py
+      - echo Building a docker image
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 324320755747.dkr.ecr.us-east-1.amazonaws.com
+      - docker build -t mafal_repo .
+      - docker tag mafal_repo:latest 324320755747.dkr.ecr.us-east-1.amazonaws.com/mafal_repo:latest
+  post_build:
+    commands:
+      - echo pushing image to ecr    
+      - docker push 324320755747.dkr.ecr.us-east-1.amazonaws.com/mafal_repo:latest
